@@ -49,9 +49,10 @@ const createBtn = (id, content, className) => {
 }
 
 //CREATE number buttons
-for (let i = 0; i < 10; i++){
+for (let i = 1; i < 10; i++){
     createBtn(i, i, "number");
 }
+const zero = createBtn(0, 0, "number")
 
 //CREATE operator buttons
 const operators = ["+", "-", "*", "/"];

@@ -31,12 +31,49 @@ body{
 }
 
 #buttons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 90%;
     flex: 1;
-    flex-wrap: wrap;
+    padding-bottom: 3%;
 }
 
 #buttons button{
-    width: calc(100% / 4);
-    height: calc(100% / 4);
+    width: calc(90% / 4);
+    height: calc(90% / 4);
+    font-family: 'Courier New', Courier, monospace;
+    margin: 5px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
+}
+
+.number{
+    background-color: white;
+}
+
+.number:hover{
+    background-color: lightgray;
+}
+
+.operator{
+    background-color: lightgoldenrodyellow;
+}
+
+.operator:hover, #result{
+    background-color: gold;
+}
+
+#result:hover{
+    background-color: goldenrod;
+}
+
+#clear{
+    background-color: pink;
+}
+
+#clear:hover{
+    background-color: coral;
 }
