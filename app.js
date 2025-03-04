@@ -36,3 +36,31 @@ const operate = () => {
             divide(calculator.firstNum, calculator.secondNum);
     }
 }
+
+/****************************GENERATE HTML DOM ELEMENTS***************************/
+const btnsContainer = document.querySelector("#buttons");
+const createBtn = (id, content, className) => {
+    let newBtn = document.createElement("button");
+    newBtn.id = id;
+    newBtn.textContent = content;
+    newBtn.classList.add(className);
+    btnsContainer.appendChild(newBtn);
+    return newBtn;
+}
+
+//CREATE number buttons
+for (let i = 0; i < 10; i++){
+    createBtn(i, i, "number");
+}
+
+//CREATE operator buttons
+const operators = ["+", "-", "*", "/"];
+operators.forEach(operator => {
+    createBtn(operator, operator, "operator");
+})
+
+//ADD an equal sign button
+const result = createBtn("result", "=")
+
+//ADD a clear button
+const clear = createBtn("clear", "CLEAR")
