@@ -1,0 +1,42 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#container{
+    width: 50vw;
+    height: 90vh;
+    background-color: darkgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid rgb(132, 131, 131);
+}
+
+#display{
+    background-color: black;
+    width: 90%;
+    height: 5rem;
+    margin: 3% 0;
+    color: goldenrod;
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+#buttons{
+    width: 90%;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+#buttons button{
+    width: calc(100% / 4);
+    height: calc(100% / 4);
+}
