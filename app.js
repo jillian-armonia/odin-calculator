@@ -12,7 +12,8 @@ const multiply = (a, b) => {
 
 const divide = (a, b) => {
     if (b == 0) return "do better dude";
-    return (a / b).toFixed(2);
+    if (a % b !== 0) return (a / b).toFixed(2);
+    return a / b;
 }
 
 const calculator = {
@@ -98,6 +99,8 @@ operators.forEach(operator => {
 //ADD an equal sign button
 const result = createBtn("result", "=")
 result.onclick = () => {
+    if (display.textContent == 0) return;
+
     calculator.result = operate()
     display.textContent = calculator.result;
     calculator.firstNum = "";
