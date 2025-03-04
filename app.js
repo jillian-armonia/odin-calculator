@@ -107,3 +107,10 @@ result.onclick = () => {
 
 //ADD a clear button
 const clear = createBtn("clear", "CLEAR")
+clear.onclick = () => {
+    display.textContent = 0;
+    calculator.firstNum = "";
+    calculator.result = "";
+    calculator.secondNum ="";
+    calculator.operator = null;
+}
