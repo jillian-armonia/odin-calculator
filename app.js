@@ -17,8 +17,8 @@ const divide = (a, b) => {
 
 const calculator = {
     operator: null,
-    firstNum: null,
-    secondNum: null,
+    firstNum: "",
+    secondNum: "",
 }
 
 const operate = () => {
@@ -38,6 +38,7 @@ const operate = () => {
 }
 
 /****************************GENERATE HTML DOM ELEMENTS***************************/
+const display = document.querySelector("#display");
 const btnsContainer = document.querySelector("#buttons");
 const createBtn = (id, content, className) => {
     let newBtn = document.createElement("button");
@@ -50,14 +51,49 @@ const createBtn = (id, content, className) => {
 
 //CREATE number buttons
 for (let i = 1; i < 10; i++){
-    createBtn(i, i, "number");
+    let numberBtn = createBtn(i, i, "number");
+    //CREATE click functions
+    numberBtn.onclick = () => {
+        if (!calculator.operator){
+            calculator.firstNum += numberBtn.id;
+            display.textContent = calculator.firstNum;
+        } else {
+            calculator.secondNum += numberBtn.id;
+            display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
+        }
+    }
+        //IF the operator is still null
+            //ADD to the firstNum variable
+            //SET the firstNum variable as the display content
+        //ELSE
+            //ADD to the secondNum variable
+            //SET the display content as a combined string of the firstNum, operator, and the secondNum
 }
 const zero = createBtn(0, 0, "number")
+zero.onclick = () => {
+    if (!calculator.operator && calculator.firstNum){
+        calculator.firstNum += zero.id;
+        display.textContent = calculator.firstNum;
+    } else if (calculator.operator && calculator.secondNum) {
+        calculator.secondNum += zero.id;
+        display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
+    }
+}
 
 //CREATE operator buttons
 const operators = ["+", "-", "*", "/"];
 operators.forEach(operator => {
-    createBtn(operator, operator, "operator");
+    let operatorBtn = createBtn(operator, operator, "operator");
+    //CREATE click functions
+    operatorBtn.onclick = () => {
+        if (calculator.firstNum && !calculator.secondNum){
+            calculator.operator = operatorBtn.id;
+            display.textContent = calculator.firstNum + calculator.operator;
+        }
+    }
+        //IF the firstNum has a value, and the secondNum doesn't...
+            //SET the value of the operator to the button id
+            //SET the display with combined string of the firstNum and the operator
 })
 
 //ADD an equal sign button
