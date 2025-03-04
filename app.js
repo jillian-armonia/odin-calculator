@@ -22,18 +22,19 @@ const calculator = {
 }
 
 const operate = () => {
+    //ENSURE that both numbers are NOT strings
+    calculator.firstNum = Number(calculator.firstNum);
+    calculator.secondNum = Number(calculator.firstNum);
+
     switch(calculator.operator){
         case "+":
-            add(calculator.firstNum, calculator.secondNum);
-            break;
+            return add(calculator.firstNum, calculator.secondNum);
         case "-":
-            subtract(calculator.firstNum, calculator.secondNum);
-            break;
+            return subtract(calculator.firstNum, calculator.secondNum);
         case "*":
-            multiply(calculator.firstNum, calculator.secondNum);
-            break;
+            return multiply(calculator.firstNum, calculator.secondNum);
         case "/":
-            divide(calculator.firstNum, calculator.secondNum);
+            return divide(calculator.firstNum, calculator.secondNum);
     }
 }
 
@@ -62,13 +63,8 @@ for (let i = 1; i < 10; i++){
             display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
         }
     }
-        //IF the operator is still null
-            //ADD to the firstNum variable
-            //SET the firstNum variable as the display content
-        //ELSE
-            //ADD to the secondNum variable
-            //SET the display content as a combined string of the firstNum, operator, and the secondNum
 }
+
 const zero = createBtn(0, 0, "number")
 zero.onclick = () => {
     if (!calculator.operator && calculator.firstNum){
@@ -91,13 +87,11 @@ operators.forEach(operator => {
             display.textContent = calculator.firstNum + calculator.operator;
         }
     }
-        //IF the firstNum has a value, and the secondNum doesn't...
-            //SET the value of the operator to the button id
-            //SET the display with combined string of the firstNum and the operator
 })
 
 //ADD an equal sign button
 const result = createBtn("result", "=")
+result.onclick = () => operate
 
 //ADD a clear button
 const clear = createBtn("clear", "CLEAR")
