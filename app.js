@@ -12,7 +12,7 @@ const multiply = (a, b) => {
 
 const divide = (a, b) => {
     if (b == 0) return "do better dude";
-    return a / b;
+    return (a / b).toFixed(2);
 }
 
 const calculator = {
@@ -24,7 +24,7 @@ const calculator = {
 const operate = () => {
     //ENSURE that both numbers are NOT strings
     calculator.firstNum = Number(calculator.firstNum);
-    calculator.secondNum = Number(calculator.firstNum);
+    calculator.secondNum = Number(calculator.secondNum);
 
     switch(calculator.operator){
         case "+":
@@ -33,7 +33,7 @@ const operate = () => {
             return subtract(calculator.firstNum, calculator.secondNum);
         case "*":
             return multiply(calculator.firstNum, calculator.secondNum);
-        case "/":
+        case "÷":
             return divide(calculator.firstNum, calculator.secondNum);
     }
 }
@@ -77,7 +77,7 @@ zero.onclick = () => {
 }
 
 //CREATE operator buttons
-const operators = ["+", "-", "*", "/"];
+const operators = ["+", "-", "*", "÷"];
 operators.forEach(operator => {
     let operatorBtn = createBtn(operator, operator, "operator");
     //CREATE click functions
@@ -91,7 +91,9 @@ operators.forEach(operator => {
 
 //ADD an equal sign button
 const result = createBtn("result", "=")
-result.onclick = () => operate
+result.onclick = () => {
+    display.textContent = operate();
+}
 
 //ADD a clear button
 const clear = createBtn("clear", "CLEAR")
