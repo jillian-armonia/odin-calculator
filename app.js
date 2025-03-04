@@ -19,6 +19,7 @@ const calculator = {
     operator: null,
     firstNum: "",
     secondNum: "",
+    result: "",
 }
 
 const operate = () => {
@@ -85,6 +86,11 @@ operators.forEach(operator => {
         if (calculator.firstNum && !calculator.secondNum){
             calculator.operator = operatorBtn.id;
             display.textContent = calculator.firstNum + calculator.operator;
+        } else if (calculator.result && !calculator.secondNum){
+            calculator.operator = operatorBtn.id;
+            calculator.firstNum = calculator.result;
+            display.textContent = calculator.result + calculator.operator;
+            calculator.result = "";
         }
     }
 })
@@ -92,7 +98,11 @@ operators.forEach(operator => {
 //ADD an equal sign button
 const result = createBtn("result", "=")
 result.onclick = () => {
-    display.textContent = operate();
+    calculator.result = operate()
+    display.textContent = calculator.result;
+    calculator.firstNum = "";
+    calculator.operator = null;
+    calculator.secondNum = "";
 }
 
 //ADD a clear button
