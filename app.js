@@ -40,6 +40,7 @@ const operate = () => {
 }
 
 /****************************GENERATE HTML DOM ELEMENTS***************************/
+const displayContainer = document.querySelector("#display-container");
 const display = document.querySelector("#display");
 const btnsContainer = document.querySelector("#buttons");
 const createBtn = (id, content, className) => {

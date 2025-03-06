@@ -17,6 +17,10 @@ body{
 }
 
 #display{
+    background-color: black;
+    width: 90%;
+    height: 5rem;
+    margin: 3% 0;
     color: goldenrod;
     font-size: 4rem;
     display: flex;
@@ -24,13 +28,7 @@ body{
     justify-content: end;
     border-radius: 5px;
     font-weight: 600;
-}
-
-#display-container{
-    background-color: black;
-    width: 90%;
-    height: 5rem;
-    margin: 3% 0;
+    overflow: hidden;
 }
 
 #buttons{
