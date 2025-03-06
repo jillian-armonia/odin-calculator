@@ -97,6 +97,7 @@ operators.forEach(operator => {
 })
 
 //ADD an equal sign button
+//PLEASE REFACTOR ESPECIALLY WHEN YOU CLICK THE BUTTON WHEN THERE IS ONLY A FIRSTNUM AND/OR OPERATOR
 const result = createBtn("result", "=")
 result.onclick = () => {
     if (display.textContent == 0) return;
@@ -116,4 +117,26 @@ clear.onclick = () => {
     calculator.result = "";
     calculator.secondNum ="";
     calculator.operator = null;
+}
+
+//ADD a decimal separator button
+const decimal = createBtn("decimal", ".");
+decimal.onclick = () => {
+    if (!calculator.operator){
+        if (!calculator.firstNum){
+            calculator.firstNum += "0.";
+            display.textContent = calculator.firstNum;
+        } else if (!calculator.firstNum.includes(".")){
+            calculator.firstNum += ".";
+            display.textContent = calculator.firstNum;
+        }
+    } else {
+        if (!calculator.secondNum){
+            calculator.secondNum += "0.";
+            display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
+        } else if (!calculator.secondNum.includes(".")) {
+            calculator.secondNum += ".";
+            display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
+        }
+    }
 }

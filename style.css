@@ -40,8 +40,8 @@ body{
 }
 
 #buttons button{
-    width: calc(90% / 4);
-    height: calc(90% / 4);
+    width: calc(90% / 5);
+    height: calc(90% / 5);
     font-family: 'Courier New', Courier, monospace;
     margin: 5px;
     font-size: 2rem;
@@ -72,6 +72,7 @@ body{
 
 #clear{
     background-color: pink;
+    font-size: 1em !important;
 }
 
 #clear:hover{
