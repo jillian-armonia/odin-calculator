@@ -12,7 +12,6 @@ const multiply = (a, b) => {
 
 const divide = (a, b) => {
     if (b == 0) return "do better dude";
-    if (a % b !== 0) return (a / b).toFixed(2);
     return a / b;
 }
 
@@ -97,12 +96,14 @@ operators.forEach(operator => {
 })
 
 //ADD an equal sign button
-//PLEASE REFACTOR ESPECIALLY WHEN YOU CLICK THE BUTTON WHEN THERE IS ONLY A FIRSTNUM AND/OR OPERATOR
+
 const result = createBtn("result", "=")
 result.onclick = () => {
-    if (display.textContent == 0) return;
+    if (display.textContent == 0 || !calculator.secondNum) return;
 
-    calculator.result = operate()
+    calculator.result = operate();
+    if (!Number.isInteger(calculator.result)) calculator.result = +calculator.result.toFixed(2);
+
     display.textContent = calculator.result;
     calculator.firstNum = "";
     calculator.operator = null;
