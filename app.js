@@ -40,7 +40,6 @@ const operate = () => {
 }
 
 /****************************GENERATE HTML DOM ELEMENTS***************************/
-const displayContainer = document.querySelector("#display-container");
 const display = document.querySelector("#display");
 const btnsContainer = document.querySelector("#buttons");
 const createBtn = (id, content, className) => {
@@ -114,7 +113,7 @@ result.onclick = () => {
 //ADD a clear button
 const clear = createBtn("clear", "CLEAR")
 clear.onclick = () => {
-    display.textContent = 0;
+    display.textContent = "";
     calculator.firstNum = "";
     calculator.result = "";
     calculator.secondNum ="";
@@ -140,5 +139,23 @@ decimal.onclick = () => {
             calculator.secondNum += ".";
             display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
         }
+    }
+}
+
+//ADD a backspace button
+const erase = createBtn("erase", "c");
+erase.onclick = () => {
+    if (!calculator.operator){
+        let end = calculator.firstNum.length - 1
+        calculator.firstNum = calculator.firstNum.slice(0, end);
+        display.textContent = calculator.firstNum;
+    } else if (!calculator.secondNum){
+        let end = display.textContent.length - 1;
+        calculator.operator = null;
+        display.textContent = display.textContent.slice(0, end);
+    } else {
+        let end = calculator.secondNum.length - 1;
+        calculator.secondNum = calculator.secondNum.slice(0, end);
+        display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
     }
 }
