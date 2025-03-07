@@ -52,18 +52,31 @@ const createBtn = (id, content, className) => {
 }
 
 //CREATE a function to update the display
-
+const updateDisplay = (calcProp, input) => {
+    switch(calcProp){
+        case "firstNum":
+            calculator.firstNum += input;
+            display.textContent = calculator.firstNum;
+            break;
+        case "operator":
+            calculator.operator = input;
+            display.textContent = calculator.firstNum + calculator.operator;
+            break;
+        case "secondNum":
+            calculator.secondNum += input;
+            display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
+            break;
+    }
+}
 //CREATE number buttons
 for (let i = 1; i < 10; i++){
     let numberBtn = createBtn(i, i, "number");
     //CREATE click functions
     numberBtn.onclick = () => {
         if (!calculator.operator){
-            calculator.firstNum += numberBtn.id;
-            display.textContent = calculator.firstNum;
+            updateDisplay("firstNum", numberBtn.id)
         } else {
-            calculator.secondNum += numberBtn.id;
-            display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
+            updateDisplay("secondNum", numberBtn.id)
         }
     }
 
@@ -75,11 +88,9 @@ for (let i = 1; i < 10; i++){
 const zero = createBtn(0, 0, "number")
 zero.onclick = () => {
     if (!calculator.operator && calculator.firstNum){
-        calculator.firstNum += zero.id;
-        display.textContent = calculator.firstNum;
+        updateDisplay("firstNum", zero.id);
     } else if (calculator.operator && calculator.secondNum) {
-        calculator.secondNum += zero.id;
-        display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
+        updateDisplay("secondNum", zero.id)
     }
 }
 
@@ -90,12 +101,10 @@ operators.forEach(operator => {
     //CREATE click functions
     operatorBtn.onclick = () => {
         if (calculator.firstNum && !calculator.secondNum){
-            calculator.operator = operatorBtn.id;
-            display.textContent = calculator.firstNum + calculator.operator;
+            updateDisplay("operator", operatorBtn.id)
         } else if (calculator.result && !calculator.secondNum){
-            calculator.operator = operatorBtn.id;
             calculator.firstNum = calculator.result;
-            display.textContent = calculator.result + calculator.operator;
+            updateDisplay("operator", operatorBtn.id);
             calculator.result = "";
         }
     }
@@ -136,19 +145,15 @@ const decimal = createBtn("decimal", ".");
 decimal.onclick = () => {
     if (!calculator.operator){
         if (!calculator.firstNum){
-            calculator.firstNum += "0.";
-            display.textContent = calculator.firstNum;
+            updateDisplay("firstNum", "0.");
         } else if (!calculator.firstNum.includes(".")){
-            calculator.firstNum += ".";
-            display.textContent = calculator.firstNum;
+            updateDisplay("firstNum", ".");
         }
     } else {
         if (!calculator.secondNum){
-            calculator.secondNum += "0.";
-            display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
+            updateDisplay("secondNum", "0.");
         } else if (!calculator.secondNum.includes(".")) {
-            calculator.secondNum += ".";
-            display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
+            updateDisplay("secondNum", ".");
         }
     }
 }
