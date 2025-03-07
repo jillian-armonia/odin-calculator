@@ -51,6 +51,8 @@ const createBtn = (id, content, className) => {
     return newBtn;
 }
 
+//CREATE a function to update the display
+
 //CREATE number buttons
 for (let i = 1; i < 10; i++){
     let numberBtn = createBtn(i, i, "number");
@@ -64,6 +66,10 @@ for (let i = 1; i < 10; i++){
             display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
         }
     }
+
+    document.addEventListener("keydown", (e) => {
+        if (numberBtn.id == e.key) numberBtn.click();
+    })
 }
 
 const zero = createBtn(0, 0, "number")
@@ -93,13 +99,18 @@ operators.forEach(operator => {
             calculator.result = "";
         }
     }
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key == operatorBtn.id) operatorBtn.click();
+        if (e.key == "/") document.querySelector("#÷").click();
+    })
 })
 
 //ADD an equal sign button
 
 const result = createBtn("result", "=")
 result.onclick = () => {
-    if (display.textContent == 0 || !calculator.secondNum) return;
+    if (display.textContent == "" || !calculator.secondNum || !calculator.operator) return;
 
     calculator.result = operate();
     if (!Number.isInteger(calculator.result)) calculator.result = +calculator.result.toFixed(2);
@@ -159,3 +170,23 @@ erase.onclick = () => {
         display.textContent = calculator.firstNum + calculator.operator + calculator.secondNum;
     }
 }
+
+/**************KEYBOARD SUPPORT *************/
+document.addEventListener("keydown", (e) => {
+    switch(e.key){
+        case "Enter":
+            result.click();
+            break;
+        case "Backspace":
+            erase.click();
+            break;
+        case ".":
+            decimal.click();
+            break;
+        case 0:
+            zero.click();
+            break;
+        default:
+            break;
+    }
+})
